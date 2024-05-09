@@ -1,33 +1,31 @@
 import json
 import random
 
-customers = {}
-kitchens = {}
+def create():
 
-with open("../Data/Customer.json", "r") as f:
-    customers = json.load(f)
+    customers = {}
+    kitchens = {}
 
-with open("../Data/Kitchens.json", "r") as f:
-    kitchens = json.load(f)
+    with open("../Data/Customer.json", "r") as f:
+        customers = json.load(f)
 
+    with open("../Data/Kitchens.json", "r") as f:
+        kitchens = json.load(f)
 
-customersKeys = customers.keys()
-kitchenKeys = list(kitchens.keys())
+    customersKeys = customers.keys()
+    kitchenKeys = list(kitchens.keys())
 
-random.shuffle(kitchenKeys)
-count = len(kitchenKeys)
+    random.shuffle(kitchenKeys)
+    count = len(kitchenKeys)
 
+    Order = {}
+    idx = 0
+    for key in customersKeys:
+        Order[key]=kitchenKeys[idx%count]
+        idx+=1
 
-Order = {}
-
-idx = 0
-for key in customersKeys:
-    Order[key]=kitchenKeys[idx%count]
-    idx+=1
-
-
-with open("../Data/Order.json", "w") as f:
-    json.dump(Order, f)
-    f.close()
+    with open("../Data/Order.json", "w") as f:
+        json.dump(Order, f)
+        f.close()
 
 
