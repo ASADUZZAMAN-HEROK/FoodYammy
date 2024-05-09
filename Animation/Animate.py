@@ -42,6 +42,12 @@ screen.setup(width=1.0, height=1.0, startx=None, starty=None)
 
 kitchenIcon = PhotoImage(file="../Asset/kitchen.gif")
 
+pen = turtle.Turtle()
+pen.pencolor("black")
+pen.penup()
+pen.speed(0)
+pen.hideturtle()
+
 for (k,i) in zip(kitchens.keys(),range(0,len(kitchens.keys()))):
     pos_x = kitchens[k]["pos_x"]-800
     pos_y = -kitchens[k]["pos_y"]+shiftY
@@ -50,16 +56,21 @@ for (k,i) in zip(kitchens.keys(),range(0,len(kitchens.keys()))):
     kitchenPens[k].speed(10)
     kitchenPens[k].penup()
     kitchenPens[k].setposition(pos_x, pos_y-i*100)
+    pen.goto(pos_x-50, pos_y-i*100-50)
+    pen.write(kitchens[k]["name"])
 
 customerIcon = PhotoImage(file="../Asset/customer.gif")
 for (c,i) in zip(customers.keys(),range(0,len(customers.keys()))):
-    pos_x = customers[c]["pos_x"]-200
+    pos_x = customers[c]["pos_x"]-250
     pos_y = -customers[c]["pos_y"]+shiftY
     screen.addshape(c, turtle.Shape("image", customerIcon))
     customerPens[c]=turtle.Turtle(c)
     customerPens[c].penup()
     customerPens[c].speed(10)
     customerPens[c].setposition(pos_x, pos_y-i*20)
+    pen.goto(pos_x+50, pos_y-i*20-20)
+    pen.write(customers[c]["name"])
+
 
 vehicleNodeNoFoodIcon = PhotoImage(file="../Asset/carNoFood.gif")
 vehicleNodeFoodIcon = PhotoImage(file="../Asset/car.gif")
@@ -69,7 +80,7 @@ turtle.register_shape("../Asset/carNoFood.gif")
 for (v,i) in zip(vehicles.keys(),range(0,len(vehicles.keys()))):
     posKey = nodeLoc["n"+str(i+1)]
 
-    pos_x = customers[posKey]["pos_x"]-250
+    pos_x = customers[posKey]["pos_x"]-300
     pos_y = -customers[posKey]["pos_y"]+shiftY-8
     screen.addshape(v, turtle.Shape("image", vehicleNodeNoFoodIcon))
     vehiclePen[v]=turtle.Turtle(v)
@@ -77,11 +88,6 @@ for (v,i) in zip(vehicles.keys(),range(0,len(vehicles.keys()))):
     vehiclePen[v].speed(7)
     vehiclePen[v].setposition(pos_x, pos_y-i*20)
 
-pen = turtle.Turtle()
-pen.pencolor("black")
-pen.penup()
-pen.speed(0)
-pen.hideturtle()
 
 
 def drawLine(cur_x, cur_y, next_x, next_y):

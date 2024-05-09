@@ -11,13 +11,13 @@ def Solve():
     "problem":"(define (problem BLOCKS-4-0) (:domain BLOCKS) (:objects D B A C ) (:INIT (CLEAR C) (CLEAR A) (CLEAR B) (CLEAR D) (ONTABLE C) (ONTABLE A) (ONTABLE B) (ONTABLE D) (HANDEMPTY)) (:goal (AND (ON D C) (ON C B) (ON B A))) )"
     }
 
-    # with open("../PDDL/FoodYammyDomain.pddl", "r") as f:
-    #     req_body["domain"]=f.read()
-    #     f.close()
+    with open("../PDDL/FoodYammyDomain.pddl", "r") as f:
+        req_body["domain"]=f.read()
+        f.close()
 
-    # with open("../PDDL/FoodYammyProblem.ppdl", "r") as f:
-    #     req_body["problem"]=f.read()
-    #     f.close()
+    with open("../PDDL/FoodYammyProblem.ppdl", "r") as f:
+        req_body["problem"]=f.read()
+        f.close()
 
     # Send job request to solve endpoint
     solve_request_url=requests.post("https://solver.planning.domains:5001/package/dual-bfws-ffparser/solve", json=req_body).json()
@@ -33,6 +33,6 @@ def Solve():
         time.sleep(0.5)
 
     pprint(celery_result.json())
-    # with open("../Result/PlanningResult.json", "w") as f:
-    #     json.dump(celery_result.json(),f)
+    with open("../Result/PlanningResult.json", "w") as f:
+        json.dump(celery_result.json(),f)
     return celery_result
