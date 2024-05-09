@@ -15,7 +15,7 @@ def Solve():
         req_body["domain"]=f.read()
         f.close()
 
-    with open("../PDDL/FoodYammyProblem.ppdl", "r") as f:
+    with open("../PDDL/FoodYammyProblem.pddl", "r") as f:
         req_body["problem"]=f.read()
         f.close()
 

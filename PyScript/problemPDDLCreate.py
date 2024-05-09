@@ -34,7 +34,7 @@ def create():
         return x_diff*x_diff + y_diff*y_diff
 
 
-    with open('../PDDL/FoodYammyProblem.ppdl', 'w') as out:
+    with open('../PDDL/FoodYammyProblem.pddl', 'w') as out:
         out.write("(define (problem FoodYammyProblem)\n")
         out.write("\t(:domain FoodYammyDomain)\n")
         out.write("\t(:objects\t")

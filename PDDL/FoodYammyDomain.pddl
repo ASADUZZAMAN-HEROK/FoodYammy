@@ -7,7 +7,7 @@
          (location_K ?kitchen ?node)
 			   (location_C ?customer ?node)
 			   (location_V ?vehicle ?node)
-			   (K_HasFood_C ?restaurant ?customer)
+			   (K_HasFood_C ?kitchen ?customer)
 			   (V_HasFood_C ?vehicle ?customer)
 			   (standBy ?vehicle)
 			   (delivered ?customer))
