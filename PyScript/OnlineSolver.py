@@ -22,6 +22,8 @@ def Solve():
     # Send job request to solve endpoint
     solve_request_url=requests.post("https://solver.planning.domains:5001/package/dual-bfws-ffparser/solve", json=req_body).json()
 
+
+    print('Computing...')
     # Query the result in the job
     celery_result=requests.post('https://solver.planning.domains:5001' + solve_request_url['result'])
 
