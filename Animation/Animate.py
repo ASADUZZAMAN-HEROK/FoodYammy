@@ -39,6 +39,7 @@ vehiclePen={}
 
 screen = turtle.Screen()
 screen.setup(width=1.0, height=1.0, startx=None, starty=None)
+screen.bgpic("../Asset/map.png")
 
 kitchenIcon = PhotoImage(file="../Asset/kitchen.gif")
 
@@ -49,26 +50,26 @@ pen.speed(0)
 pen.hideturtle()
 
 for (k,i) in zip(kitchens.keys(),range(0,len(kitchens.keys()))):
-    pos_x = kitchens[k]["pos_x"]-800
-    pos_y = -kitchens[k]["pos_y"]+shiftY
+    pos_x = kitchens[k]["pos_x"]
+    pos_y = kitchens[k]["pos_y"]
     screen.addshape(k, turtle.Shape("image", kitchenIcon))
     kitchenPens[k]=turtle.Turtle(k)
     kitchenPens[k].speed(10)
     kitchenPens[k].penup()
-    kitchenPens[k].setposition(pos_x, pos_y-i*100)
-    pen.goto(pos_x-50, pos_y-i*100-50)
+    kitchenPens[k].setposition(pos_x, pos_y)
+    pen.goto(pos_x-50, pos_y-35)
     pen.write(kitchens[k]["name"])
 
 customerIcon = PhotoImage(file="../Asset/customer.gif")
 for (c,i) in zip(customers.keys(),range(0,len(customers.keys()))):
-    pos_x = customers[c]["pos_x"]-250
-    pos_y = -customers[c]["pos_y"]+shiftY
+    pos_x = customers[c]["pos_x"]
+    pos_y = customers[c]["pos_y"]
     screen.addshape(c, turtle.Shape("image", customerIcon))
     customerPens[c]=turtle.Turtle(c)
     customerPens[c].penup()
     customerPens[c].speed(10)
-    customerPens[c].setposition(pos_x, pos_y-i*20)
-    pen.goto(pos_x+50, pos_y-i*20-20)
+    customerPens[c].setposition(pos_x, pos_y)
+    pen.goto(pos_x-15, pos_y+5)
     pen.write(customers[c]["name"])
 
 
@@ -80,13 +81,13 @@ turtle.register_shape("../Asset/carNoFood.gif")
 for (v,i) in zip(vehicles.keys(),range(0,len(vehicles.keys()))):
     posKey = nodeLoc["n"+str(i+1)]
 
-    pos_x = customers[posKey]["pos_x"]-300
-    pos_y = -customers[posKey]["pos_y"]+shiftY-8
+    pos_x = customers[posKey]["pos_x"]
+    pos_y = customers[posKey]["pos_y"]-25
     screen.addshape(v, turtle.Shape("image", vehicleNodeNoFoodIcon))
     vehiclePen[v]=turtle.Turtle(v)
     vehiclePen[v].penup()
     vehiclePen[v].speed(7)
-    vehiclePen[v].setposition(pos_x, pos_y-i*20)
+    vehiclePen[v].setposition(pos_x, pos_y)
 
 
 
@@ -118,14 +119,14 @@ def updateFoodCount(k, count):
     for _ in range(2):
         pen.forward(70)  # Adjust size as needed
         pen.right(-90)
-        pen.forward(20)  # Adjust size as needed
+        pen.forward(15)  # Adjust size as needed
         pen.right(-90)
     pen.end_fill()
     pen.penup()
     pen.goto(cur_x-25, cur_y+25)
     pen.pendown()
     pen.color("black")
-    pen.write("ready = "+str(count), font=("Arial", 12,"normal"))
+    pen.write("ready = "+str(count), font=("Arial", 8,"normal"))
     pen.penup()
 
 def updateDeliveryStatus(k, color):
@@ -215,3 +216,4 @@ for plan in plans:
 
 
 screen.exitonclick()
+
