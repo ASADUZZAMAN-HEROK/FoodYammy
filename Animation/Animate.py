@@ -170,6 +170,7 @@ for plan in plans:
         dest = nodeLoc[item[3].lower()]
         x, y = kitchenPens[dest].pos() if dest[0]=='k' else customerPens[dest].pos()
         vehiclePen[v].speed(4)
+        # vehiclePen[v].tilt(45)
         vehiclePen[v].goto(x,y)
     elif item[0]=="PICKUPFOOD":
         v = item[1].lower()
