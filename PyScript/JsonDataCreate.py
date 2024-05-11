@@ -12,7 +12,7 @@ def euclideanDistance(u, v):
     return math.sqrt((u[0] - v[0])**2 + (u[1] - v[1])**2)
 
 
-def isDistantEnough(x, y, threshold=150):
+def isDistantEnough(x, y, threshold=160):
     curr_node = (x, y)
     for node in node_coordinates:
         if(euclideanDistance(node, curr_node) < threshold):
